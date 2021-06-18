@@ -16,7 +16,7 @@ async def on_ready():
 
 @bot.command(name='test',help='checks if the bot works')
 async def test(ctx):
-    await ctx.send("Yay the test works! Wooo!! does this work?")
+    await ctx.send("Yay the test works! Wooo!! does this work? hmmm")
 
 @bot.command(name='add', help='helps add 2 numbers.')
 async def roll(ctx, a:int, b:int):
