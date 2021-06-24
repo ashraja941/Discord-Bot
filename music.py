@@ -29,6 +29,7 @@ async def play(ctx, *,url):
     search_results = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
     url = 'http://www.youtube.com/watch?v=' + search_results[0]
 
+
     song_there = os.path.isfile("song.mp3")
     try:
         if song_there:
@@ -37,7 +38,8 @@ async def play(ctx, *,url):
         await ctx.send("Song is currently playing")
         return
 
-    voiceChannel = discord.utils.get(ctx.guild.voice_channels, name = 'General' )
+    #voiceChannel = discord.utils.get(ctx.guild.voice_channels, name = 'General' )
+    voiceChannel = ctx.author.voice.channel 
     await voiceChannel.connect()
     voice =  discord.utils.get(bot.voice_clients,guild = ctx.guild)
 
@@ -55,6 +57,7 @@ async def play(ctx, *,url):
         if file.endswith(".mp3"):
             os.rename(file,"song.mp3")
     voice.play(discord.FFmpegPCMAudio("song.mp3"))
+
 
 @bot.command()
 async def leave(ctx):
@@ -75,7 +78,7 @@ async def pause(ctx):
 @bot.command()
 async def resume(ctx):
     voice = discord.utils.get(bot.voice_clients,guild = ctx.guild)
-    if voice.is_pauseed():
+    if voice.is_paused():
         voice.resume()
     else:
         ctx.sent("The audio is not paused")
@@ -84,20 +87,5 @@ async def resume(ctx):
 async def stop(ctx):
     voice = discord.utils.get(bot.voice_clients,guild = ctx.guild)
     voice.stop()
-
-@bot.command()
-async def youtube(ctx, *,search):
-    query_string = urllib.parse.urlencode({
-        'search_query': search
-    })
-
-    html_content = urllib.request.urlopen(
-        'http://www.youtube.com/results?' + query_string
-    )
-
-    #search_results = re.findall('href=\"\\/watch\\?v=(.{11})',html_content.read().decode())
-    search_results = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
-    await ctx.send('http://www.youtube.com/watch?v=' + search_results[0])
-
 
 bot.run(TOKEN)

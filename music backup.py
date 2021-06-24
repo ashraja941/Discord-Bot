@@ -4,7 +4,7 @@ from discord.channel import VoiceChannel
 from dotenv import load_dotenv
 from discord.ext import commands
 import youtube_dl
-
+import urllib.parse, urllib.request, re
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -14,7 +14,21 @@ intents = discord.Intents().all()
 bot = commands.Bot(command_prefix='.',intents=intents)
 
 @bot.command()
-async def play(ctx, url : str):
+async def play(ctx, *,url):
+    #check if given search is url or search
+    if(url[:6] != "http://"):
+        query_string = urllib.parse.urlencode({
+        'search_query': url
+    })
+
+    html_content = urllib.request.urlopen(
+        'http://www.youtube.com/results?' + query_string
+    )
+
+    #search_results = re.findall('href=\"\\/watch\\?v=(.{11})',html_content.read().decode())
+    search_results = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
+    url = 'http://www.youtube.com/watch?v=' + search_results[0]
+
     song_there = os.path.isfile("song.mp3")
     try:
         if song_there:
@@ -70,5 +84,20 @@ async def resume(ctx):
 async def stop(ctx):
     voice = discord.utils.get(bot.voice_clients,guild = ctx.guild)
     voice.stop()
+
+@bot.command()
+async def youtube(ctx, *,search):
+    query_string = urllib.parse.urlencode({
+        'search_query': search
+    })
+
+    html_content = urllib.request.urlopen(
+        'http://www.youtube.com/results?' + query_string
+    )
+
+    #search_results = re.findall('href=\"\\/watch\\?v=(.{11})',html_content.read().decode())
+    search_results = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
+    await ctx.send('http://www.youtube.com/watch?v=' + search_results[0])
+
 
 bot.run(TOKEN)
