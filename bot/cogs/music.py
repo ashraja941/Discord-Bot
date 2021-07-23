@@ -3,6 +3,7 @@ from asyncio.events import TimerHandle
 import re
 import datetime as dt
 import typing as t
+import random
 
 import discord
 from discord import embeds
@@ -98,6 +99,15 @@ class Queue:
 
         return self._queue[self.position]
 
+    def shuffle(self):
+        if not self.queue:
+            raise QueueIsEmpty
+
+        upcoming = self.upcoming
+        random.shuffle(upcoming)
+        self._queue = self._queue[:self.position + 1]
+        self._queue.extend(upcoming)
+        
 
 class Player(wavelink.Player):
     def __init__(self, *args, **kwargs):
@@ -370,8 +380,22 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(exc, NoPreviousTracks):
             await ctx.send("There are no previous tracks in the queue.")
 
+    @commands.command(name="shuffle")
+    async def shuffle_command(self,ctx):
+        player = self.get_player(ctx)
+        player.queue.shuffle()
+        await ctx.send("Queue is shuffled.")
+
+    @shuffle_command.error
+    async def shuffle_command(self,ctx,exc):
+        if isinstance(exc, QueueIsEmpty):
+            await ctx.send("The queue cannot be shuffled as it is currently empty.")
+
+
+
+
     @commands.command(name="queue",aliases=["q"])
-    async def queue_commmand(self,ctx, show: t.Optional[int] = 10):
+    async def queue_command(self,ctx, show: t.Optional[int] = 10):
         player = self.get_player(ctx)
 
         if player.queue.is_empty:
@@ -393,5 +417,11 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             )
         msg = await ctx.send(embed=embed)
 
+    @queue_command.error
+    async def queue_command_error(self,ctx,exc):
+        if isinstance(exc,QueueIsEmpty):
+            await ctx.send("The Queue is currently empty.")
+
 def setup(bot):
     bot.add_cog(Music(bot))
+

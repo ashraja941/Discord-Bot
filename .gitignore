@@ -6,6 +6,7 @@ openjdk-13.0.2_osx-x64_bin/
 openjdk-13.0.2_linux-x64_bin/
 __pycache__/
 
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
