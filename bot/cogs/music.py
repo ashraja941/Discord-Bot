@@ -16,6 +16,12 @@ from discord.ext import commands
 from discord.ext.commands.core import command
 from discord.utils import _URL_REGEX
 
+import json
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import urllib.request
+import youtube
+
 URL_REGEX = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
 OPTIONS = {
     "1️⃣": 0,
@@ -53,6 +59,40 @@ class RepeatMode(Enum):
     NONE = 0
     ONE = 1
     ALL = 2
+
+class s2y:
+    def __init__(self):
+        with open("config.json", encoding='utf-8-sig') as json_file:
+            APIs = json.load(json_file)
+
+    def getTracks(self,playlistURL):
+        client_credentials_manager = SpotifyClientCredentials(self.APIs["spotify"]["client_id"], self.APIs["spotify"]["client_secret"])
+        spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+        results = spotify.user_playlist_tracks(user="",playlist_id=playlistURL)
+
+        trackList = []
+        for i in results["tracks"]["items"]:
+            if (i["track"]["artists"].__len__() == 1):
+                trackList.append(i["track"]["name"] + " - " + i["track"]["artists"][0]["name"])
+            else:
+                nameString = ""
+                for index, b in enumerate(i["track"]["artists"]):
+                    nameString += (b["name"])
+                    if (i["track"]["artists"].__len__() - 1 != index):
+                        nameString += ", "
+                trackList.append(i["track"]["name"] + " - " + nameString)
+
+        return trackList
+
+    def searchYoutube(self,songName):
+        api = youtube.API(client_id=self.APIs["youtube"]["client_id"],
+                client_secret=self.APIs["youtube"]["client_secret"],
+                api_key=self.APIs["youtube"]["api_key"])
+        video = api.get('search', q=songName, maxResults=1, type='video', order='relevance')
+        return("https://www.youtube.com/watch?v="+video["items"][0]["id"]["videoId"])  
+
+
 
 class Queue:
     def __init__(self):
