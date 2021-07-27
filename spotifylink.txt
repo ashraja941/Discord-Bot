@@ -1,0 +1,115 @@
+{
+	'href': 'https://api.spotify.com/v1/playlists/4ZLKyCWrGWuNbKQ0b240Wz/tracks?offset=0&limit=100&additional_types=track',
+	'items': [
+		{
+			'added_at': '2021-07-24T10:41:59Z', 
+			'added_by': 
+				{
+					'external_urls': {'spotify': 'https://open.spotify.com/user/2wnlft9zwcfyqwviyqb75id06'},
+					'href': 'https://api.spotify.com/v1/users/2wnlft9zwcfyqwviyqb75id06',
+					'id': '2wnlft9zwcfyqwviyqb75id06',
+					'type': 'user', 
+					'uri': 'spotify:user:2wnlft9zwcfyqwviyqb75id06'
+				}, 
+					'is_local': False, 
+					'primary_color': None, 
+					'track': 
+						{
+							'album': 
+								{
+									'album_type': 'single', 
+									'artists': [
+										{
+											'external_urls': {'spotify': 'https://open.spotify.com/artist/17aCDXnpzF1XYVe0QrsRvs'}, 
+											'href': 'https://api.spotify.com/v1/artists/17aCDXnpzF1XYVe0QrsRvs', 
+											'id': '17aCDXnpzF1XYVe0QrsRvs', 
+											'name': 'inverness', 
+											'type': 'artist', 
+											'uri': 'spotify:artist:17aCDXnpzF1XYVe0QrsRvs'}, 
+										{	
+											'external_urls': {'spotify': 'https://open.spotify.com/artist/1NPkkY0RutjrXakIihpIiS'}, 
+											'href': 'https://api.spotify.com/v1/artists/1NPkkY0RutjrXakIihpIiS', 
+											'id': '1NPkkY0RutjrXakIihpIiS', 
+											'name': 'William Bolton', 
+											'type': 'artist', 
+											'uri': 'spotify:artist:1NPkkY0RutjrXakIihpIiS'
+										}
+									], 
+									'available_markets':[]	
+									'external_urls': {'spotify': 'https://open.spotify.com/album/0bI8Zdvp9C7srPKXPy7qyj'}, 
+									'href': 'https://api.spotify.com/v1/albums/0bI8Zdvp9C7srPKXPy7qyj', 
+									'id': '0bI8Zdvp9C7srPKXPy7qyj', 
+									'images': [
+										{
+											'height': 640, 'url': 'https://i.scdn.co/image/ab67616d0000b27324f6253993e9ad8030b12fe9', 
+											'width': 640
+										}, 
+										{	
+											'height': 300, 
+											'url': 'https://i.scdn.co/image/ab67616d00001e0224f6253993e9ad8030b12fe9', 
+											'width': 300
+										}, 
+										{	
+											'height': 64, 
+											'url': 'https://i.scdn.co/image/ab67616d0000485124f6253993e9ad8030b12fe9', 
+											'width': 64
+										}
+									], 
+									'name': 'Lost My Mind', 
+									'release_date': '2020-07-24', 
+									'release_date_precision': 'day', 
+									'total_tracks': 1, 
+									'type': 'album', 
+									'uri': 'spotify:album:0bI8Zdvp9C7srPKXPy7qyj'
+								}, 
+							'artists': [
+								{
+									'external_urls': {'spotify': 'https://open.spotify.com/artist/17aCDXnpzF1XYVe0QrsRvs'}, 
+									'href': 'https://api.spotify.com/v1/artists/17aCDXnpzF1XYVe0QrsRvs', 
+									'id': '17aCDXnpzF1XYVe0QrsRvs', 
+									'name': 'inverness', 
+									'type': 'artist', 
+									'uri': 'spotify:artist:17aCDXnpzF1XYVe0QrsRvs'
+								},
+								{
+									'external_urls': {'spotify': 'https://open.spotify.com/artist/1NPkkY0RutjrXakIihpIiS'}, 
+									'href': 'https://api.spotify.com/v1/artists/1NPkkY0RutjrXakIihpIiS', 
+									'id': '1NPkkY0RutjrXakIihpIiS', 
+									'name': 'William Bolton', 
+									'type': 'artist', 'uri': 'spotify:artist:1NPkkY0RutjrXakIihpIiS'
+								}
+							], 
+							'available_markets': [], 
+							'disc_number': 1, 
+							'duration_ms': 187320, 
+							'episode': False, 
+							'explicit': True, 
+							'external_ids': {'isrc': 'CA6D22000164'}, 
+							'external_urls': {'spotify': 'https://open.spotify.com/track/1TRkBANxImuCUOIgd2ilh6'}, 
+							'href': 'https://api.spotify.com/v1/tracks/1TRkBANxImuCUOIgd2ilh6', 
+							'id': '1TRkBANxImuCUOIgd2ilh6', 
+							'is_local': False, 
+							'name': 'Lost My Mind', 
+							'popularity': 52, 
+							'preview_url': 'https://p.scdn.co/mp3-preview/07a488cd3fb52be958c3c5e28a9d10b57ee2865a?cid=2d2b382ed8c042539cbfa5e6bed6643d', 
+							'track': True, 
+							'track_number': 1, 
+							type': 'track', 
+							'uri': 'spotify:track:1TRkBANxImuCUOIgd2ilh6'
+						}, 
+					'video_thumbnail': {'url': None}
+				}, 
+				{
+					'added_at': '2021-07-24T10:42:03Z', 
+					'added_by': 
+						{
+							'external_urls': {'spotify': 'https://open.spotify.com/user/2wnlft9zwcfyqwviyqb75id06'}, 
+							'href': 'https://api.spotify.com/v1/users/2wnlft9zwcfyqwviyqb75id06', 'id': '2wnlft9zwcfyqwviyqb75id06', 'type': 'user', 'uri': 'spotify:user:2wnlft9zwcfyqwviyqb75id06'}, 'is_local': False, 
+	'primary_color': None, 'track': {'album': {'album_type': 'single', 'artists': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/09GJU4jF4zhNfN72mTyMCi'}, 'href': 'https://api.spotify.com/v1/artists/09GJU4jF4zhNfN72mTyMCi', 'id': '09GJU4jF4zhNfN72mTyMCi', 'name': 'Nonsens', 'type': 'artist', 'uri': 'spotify:artist:09GJU4jF4zhNfN72mTyMCi'}, {'external_urls': {'spotify': 'https://open.spotify.com/artist/62Jfwxon19ZOT9eSL6bvtY'}, 'href': 'https://api.spotify.com/v1/artists/62Jfwxon19ZOT9eSL6bvtY', 'id': '62Jfwxon19ZOT9eSL6bvtY', 'name': 'Sweater Beats', 'type': 'artist', 'uri': 'spotify:artist:62Jfwxon19ZOT9eSL6bvtY'}], 'available_markets': ['AD', 'AE', 'AG', 'AL', 'AM', 'AO', 'AR', 'AT', 'AU', 'AZ', 'BA', 'BB', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BN', 'BO', 'BR', 'BS', 'BT', 'BW', 'BY', 'BZ', 'CA', 'CH', 'CI', 'CL', 
+	'CM', 'CO', 'CR', 'CV', 'CW', 'CY', 'CZ', 'DE', 'DJ', 'DK', 'DM', 'DO', 'DZ', 'EC', 'EE', 'EG', 'ES', 'FI', 'FJ', 'FM', 'FR', 'GA', 'GB', 'GD', 'GE', 'GH', 'GM', 'GN', 'GQ', 'GR', 'GT', 'GW', 'GY', 'HK', 'HN', 'HR', 'HT', 'HU', 'ID', 'IE', 'IL', 'IN', 'IS', 'IT', 'JM', 'JO', 'JP', 
+	'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KR', 'KW', 'KZ', 'LA', 'LB', 'LC', 'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV', 'MA', 'MC', 'MD', 'ME', 'MG', 'MH', 'MK', 'ML', 'MN', 'MO', 'MR', 'MT', 'MU', 'MV', 'MW', 'MX', 'MY', 'MZ', 'NA', 'NE', 'NG', 'NI', 'NL', 'NO', 'NP', 'NR', 'NZ', 'OM', 
+	'PA', 'PE', 'PG', 'PH', 'PK', 'PL', 'PS', 'PT', 'PW', 'PY', 'QA', 'RO', 'RS', 'RU', 'RW', 'SA', 'SB', 'SC', 'SE', 'SG', 'SI', 'SK', 'SL', 'SM', 'SN', 'SR', 'ST', 'SV', 'SZ', 'TD', 'TG', 'TH', 'TL', 'TN', 'TO', 'TR', 'TT', 'TV', 'TW', 'TZ', 'UA', 'UG', 'US', 'UY', 'UZ', 'VC', 'VN', 
+	'VU', 'WS', 'XK', 'ZA', 'ZM', 'ZW'], 'external_urls': {'spotify': 'https://open.spotify.com/album/55nuEbtnb7K2Gyrc8hNcBy'}, 'href': 'https://api.spotify.com/v1/albums/55nuEbtnb7K2Gyrc8hNcBy', 'id': '55nuEbtnb7K2Gyrc8hNcBy', 'images': [{'height': 640, 'url': 'https://i.scdn.co/image/ab67616d0000b273b9e3dc5173fe72f1ade96d33', 'width': 640}, {'height': 300, 'url': 'https://i.scdn.co/image/ab67616d00001e02b9e3dc5173fe72f1ade96d33', 'width': 300}, {'height': 64, 'url': 'https://i.scdn.co/image/ab67616d00004851b9e3dc5173fe72f1ade96d33', 'width': 64}], 'name': 'Trouble', 'release_date': '2019-11-15', 'release_date_precision': 'day', 'total_tracks': 1, 'type': 'album', 'uri': 'spotify:album:55nuEbtnb7K2Gyrc8hNcBy'}, 'artists': [{'external_urls': {'spotify': 'https://open.spotify.com/artist/09GJU4jF4zhNfN72mTyMCi'}, 'href': 'https://api.spotify.com/v1/artists/09GJU4jF4zhNfN72mTyMCi', 'id': '09GJU4jF4zhNfN72mTyMCi', 'name': 'Nonsens', 'type': 'artist', 'uri': 'spotify:artist:09GJU4jF4zhNfN72mTyMCi'}, {'external_urls': {'spotify': 'https://open.spotify.com/artist/62Jfwxon19ZOT9eSL6bvtY'}, 'href': 'https://api.spotify.com/v1/artists/62Jfwxon19ZOT9eSL6bvtY', 'id': '62Jfwxon19ZOT9eSL6bvtY', 'name': 'Sweater Beats', 'type': 'artist', 'uri': 'spotify:artist:62Jfwxon19ZOT9eSL6bvtY'}], 'available_markets': ['AD', 'AE', 'AG', 'AL', 'AM', 'AO', 'AR', 'AT', 'AU', 'AZ', 'BA', 'BB', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BN', 'BO', 'BR', 'BS', 'BT', 'BW', 'BY', 'BZ', 'CA', 'CH', 'CI', 'CL', 'CM', 'CO', 'CR', 'CV', 'CW', 'CY', 'CZ', 'DE', 'DJ', 
+	'DK', 'DM', 'DO', 'DZ', 'EC', 'EE', 'EG', 'ES', 'FI', 'FJ', 'FM', 'FR', 'GA', 'GB', 'GD', 'GE', 'GH', 'GM', 'GN', 'GQ', 'GR', 'GT', 'GW', 'GY', 'HK', 'HN', 'HR', 'HT', 'HU', 'ID', 'IE', 'IL', 'IN', 'IS', 'IT', 'JM', 'JO', 'JP', 'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KR', 'KW', 'KZ', 
+	'LA', 'LB', 'LC', 'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV', 'MA', 'MC', 'MD', 'ME', 'MG', 'MH', 'MK', 'ML', 'MN', 'MO', 'MR', 'MT', 'MU', 'MV', 'MW', 'MX', 'MY', 'MZ', 'NA', 'NE', 'NG', 'NI', 'NL', 'NO', 'NP', 'NR', 'NZ', 'OM', 'PA', 'PE', 'PG', 'PH', 'PK', 'PL', 'PS', 'PT', 'PW', 
+	'PY', 'QA', 'RO', 'RS', 'RU', 'RW', 'SA', 'SB', 'SC', 'SE', 'SG', 'SI', 'SK', 'SL', 'SM', 'SN', 'SR', 'ST', 'SV', 'SZ', 'TD', 'TG', 'TH', 'TL', 'TN', 'TO', 'TR', 'TT', 'TV', 'TW', 'TZ', 'UA', 'UG', 'US', 'UY', 'UZ', 'VC', 'VN', 'VU', 'WS', 'XK', 'ZA', 'ZM', 'ZW'], 'disc_number': 1, 'duration_ms': 169781, 'episode': False, 'explicit': False, 'external_ids': {'isrc': 'CA6D21900370'}, 'external_urls': {'spotify': 'https://open.spotify.com/track/2LDK39x7TL8HZ2GvTy7y5A'}, 'href': 'https://api.spotify.com/v1/tracks/2LDK39x7TL8HZ2GvTy7y5A', 'id': '2LDK39x7TL8HZ2GvTy7y5A', 'is_local': False, 'name': 'Trouble', 'popularity': 34, 'preview_url': 'https://p.scdn.co/mp3-preview/96c7d9e80ebdf96edf9fba98d005e22d4b93ecd8?cid=2d2b382ed8c042539cbfa5e6bed6643d', 'track': True, 'track_number': 1, 'type': 'track', 'uri': 'spotify:track:2LDK39x7TL8HZ2GvTy7y5A'}, 'video_thumbnail': {'url': None}}], 'limit': 100, 'next': None, 'offset': 0, 'previous': None, 'total': 2}
