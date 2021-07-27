@@ -31,6 +31,9 @@ OPTIONS = {
     "5⃣": 4,
 }
 
+with open("bot\config.json", encoding='utf-8-sig') as json_file:
+    APIs = json.load(json_file)
+
 class AlreadyConnectedToChannel(commands.CommandError):
     pass
 
@@ -61,18 +64,16 @@ class RepeatMode(Enum):
     ALL = 2
 
 class s2y:
-    def __init__(self):
-        with open("config.json", encoding='utf-8-sig') as json_file:
-            APIs = json.load(json_file)
-
+    
     def getTracks(self,playlistURL):
-        client_credentials_manager = SpotifyClientCredentials(self.APIs["spotify"]["client_id"], self.APIs["spotify"]["client_secret"])
+        client_credentials_manager = SpotifyClientCredentials(APIs["spotify"]["client_id"], APIs["spotify"]["client_secret"])
         spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
         results = spotify.user_playlist_tracks(user="",playlist_id=playlistURL)
+        
 
         trackList = []
-        for i in results["tracks"]["items"]:
+        for i in results["items"]:
             if (i["track"]["artists"].__len__() == 1):
                 trackList.append(i["track"]["name"] + " - " + i["track"]["artists"][0]["name"])
             else:
@@ -222,6 +223,14 @@ class Player(wavelink.Player):
         if not self.is_playing and not self.queue.is_empty:
             await self.start_playback()
 
+    async def add_spotify_tracks(self,ctx,tracks):
+        if not tracks:
+            raise NoTracksFound
+        self.queue.add(tracks[0])
+        if not self.is_playing and not self.queue.is_empty:
+            await self.start_playback()
+
+
     async def choose_track(self,ctx,tracks):
         def _check(r,u):
             return (
@@ -313,6 +322,18 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
         nodes = {
             "MAIN": {
+                "host": "lava.link",
+                "port": 80,
+                "rest_uri": "http://lava.link:80",
+                "password": "anything as a password",
+                "identifier": "MAIN",
+                "region": "india",
+            }
+        }
+
+        """        
+        nodes = {
+            "MAIN": {
                 "host": "127.0.0.1",
                 "port": 2333,
                 "rest_uri": "http://127.0.0.1:2333",
@@ -321,6 +342,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 "region": "india",
             }
         }
+        """
 
         for node in nodes.values():
             await self.wavelink.initiate_node(**node)
@@ -384,6 +406,20 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 raise QueueIsEmpty
         
             await player.set_pause(False)
+
+        elif query.find('spotify') != -1:
+            if query.find('playlist') != -1:
+                change = s2y()
+                spotifyList = change.getTracks(query)
+                for i in spotifyList:
+                    search = f"ytsearch:{i}"
+                    await player.add_spotify_tracks(ctx, await self.wavelink.get_tracks(search))
+            else:
+                await ctx.send("Only spotify playlists are currently supported. Try searching for the song using the .p or .search command")
+
+        elif query.lower() in ["rick roll","Rickroll","rick astley","never gonna give you up"]:
+            await ctx.send(f"Nice try {ctx.author.display_name}")
+
         else:
             query = query.strip("<>")
             if not re.match(URL_REGEX, query):
@@ -507,6 +543,8 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
     async def queue_command_error(self,ctx,exc):
         if isinstance(exc,QueueIsEmpty):
             await ctx.send("The Queue is currently empty.")
+
+
 
 def setup(bot):
     bot.add_cog(Music(bot))
