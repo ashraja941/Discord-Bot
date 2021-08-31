@@ -4,6 +4,5 @@ asyncio
 regex
 DateTime
 typing
-enum
 Wavelink
 spotipy
