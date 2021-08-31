@@ -4,7 +4,7 @@ from discord.ext import commands
 from discord.flags import Intents
 
 
-class MusicBot(commands.Bot):
+class LFSHBot(commands.Bot):
     def __init__(self):
         self._cogs = [p.stem for p in Path(".").glob("./bot/cogs/*.py")]
         super().__init__(

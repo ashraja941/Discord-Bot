@@ -1,5 +1,5 @@
-import asyncio
 from asyncio.events import TimerHandle
+import asyncio
 import re
 import datetime as dt
 import typing as t
@@ -19,8 +19,6 @@ from discord.utils import _URL_REGEX
 import json
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-import urllib.request
-import youtube
 
 URL_REGEX = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
 OPTIONS = {
@@ -30,9 +28,6 @@ OPTIONS = {
     "4⃣": 3,
     "5⃣": 4,
 }
-
-with open("bot\config.json", encoding='utf-8-sig') as json_file:
-    APIs = json.load(json_file)
 
 class AlreadyConnectedToChannel(commands.CommandError):
     pass
@@ -64,9 +59,13 @@ class RepeatMode(Enum):
     ALL = 2
 
 class s2y:
-    
+    def __init__(self):
+        with open("bot\config.json", encoding='utf-8-sig') as json_file:
+            self.APIs = json.load(json_file)
+
+
     def getTracks(self,playlistURL):
-        client_credentials_manager = SpotifyClientCredentials(APIs["spotify"]["client_id"], APIs["spotify"]["client_secret"])
+        client_credentials_manager = SpotifyClientCredentials(self.APIs["spotify"]["client_id"], self.APIs["spotify"]["client_secret"])
         spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
         results = spotify.user_playlist_tracks(user="",playlist_id=playlistURL)
@@ -85,13 +84,6 @@ class s2y:
                 trackList.append(i["track"]["name"] + " - " + nameString)
 
         return trackList
-
-    def searchYoutube(self,songName):
-        api = youtube.API(client_id=self.APIs["youtube"]["client_id"],
-                client_secret=self.APIs["youtube"]["client_secret"],
-                api_key=self.APIs["youtube"]["api_key"])
-        video = api.get('search', q=songName, maxResults=1, type='video', order='relevance')
-        return("https://www.youtube.com/watch?v="+video["items"][0]["id"]["videoId"])  
 
 
 
@@ -217,8 +209,7 @@ class Player(wavelink.Player):
             self.queue.add(*tracks.tracks)
         else:
             self.queue.add(tracks[0])
-            await ctx.send(f"Added {tracks[0].title} to the queue.")  #make into an embed
-
+            msg = await ctx.send(f"Added {tracks[0].title} to the queue.")  #make into an embed
 
         if not self.is_playing and not self.queue.is_empty:
             await self.start_playback()
@@ -319,7 +310,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
     async def start_nodes(self):
         await self.bot.wait_until_ready()
-
+        
         nodes = {
             "MAIN": {
                 "host": "lava.link",
@@ -330,7 +321,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 "region": "india",
             }
         }
-
+        
         """        
         nodes = {
             "MAIN": {
