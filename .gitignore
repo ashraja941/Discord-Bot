@@ -1,5 +1,4 @@
 ### Custom ###
-token.0
 .env
 jdk-13.0.2/
 openjdk-13.0.2_osx-x64_bin/
