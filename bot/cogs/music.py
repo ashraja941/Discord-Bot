@@ -311,7 +311,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
     async def start_nodes(self):
         await self.bot.wait_until_ready()
 
-        """ 
+        
         #free server
         nodes = {
             "MAIN": {
@@ -320,13 +320,13 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 "rest_uri": "http://lava.link:80",
                 "password": "anything as a password",
                 "identifier": "MAIN",
-                "region": "india",
+                "region": "europe",
             }
         }
 
         #local server
         
-               
+        """       
         nodes = {
             "MAIN": {
                 "host": "127.0.0.1",
@@ -337,7 +337,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 "region": "india",
             }
         }
-        """
+        
 
         #my heroku server
         nodes = {
@@ -350,7 +350,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 "region": "europe"
             }
         }
-
+        """ 
         for node in nodes.values():
             await self.wavelink.initiate_node(**node)
 
