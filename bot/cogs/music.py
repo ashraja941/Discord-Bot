@@ -354,7 +354,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         for node in nodes.values():
             await self.wavelink.initiate_node(**node)
 
-    @commands.command(name="restart")
+    @commands.command(name="restart",help="If the Bot doesn't work then try this.")
     async def restart_command(self,ctx):
         await self.bot.wait_until_ready()
         #free server
@@ -378,7 +378,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(obj, discord.Guild):
             return self.wavelink.get_player(obj.id, cls=Player)
 
-    @commands.command(name="connect", aliases=["join"])
+    @commands.command(name="connect", aliases=["join"],help="To connect to a voice channel.")
     async def connect_command(self,ctx,*, channel:t.Optional[discord.VoiceChannel]):
         player = self.get_player(ctx)
         channel = await player.connect(ctx,channel)
@@ -391,13 +391,13 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(exc, NoVoiceChannel):
             await ctx.send("No suitable voice channel was found.")
 
-    @commands.command(name="disconnect", aliases = ["leave","dc"])
+    @commands.command(name="disconnect", aliases = ["leave","dc"],help="To disconnect the bot.")
     async def disconnect_command(self,ctx):
         player = self.get_player(ctx)
         await player.teardown()
         await ctx.send("Disconnected.")
 
-    @commands.command(name="search")
+    @commands.command(name="search",help="To search for the song, a dropdown will be shown, to select the exact song that you want to play.")
     async def search_command(self,ctx,*,query: str):
         player = self.get_player(ctx)
 
@@ -419,7 +419,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if isinstance(exc, NoVoiceChannel):
             await ctx.send("No suitable voice channel was provided.")
 
-    @commands.command(name="play", aliases=["p"])
+    @commands.command(name="play", aliases=["p"],help = "To play a song from youtube. If you want to play spotify songs use the '.spotify' command.")
     async def play_command(self,ctx, *, query: t.Optional[str]):
         player = self.get_player(ctx)
 
@@ -442,7 +442,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             else:
                 await ctx.send("Only spotify playlists are currently supported. Try searching for the song using the .p or .search command")
 
-        elif query.lower() in ["rick roll","Rickroll","rick astley","never gonna give you up"]:
+        elif query.lower() in ["rick roll","Rickroll","rick astley","never gonna give you up","https://www.youtube.com/watch?v=dQw4w9WgXcQ"]:
             await ctx.send(f"Nice try {ctx.author.display_name}")
 
         else:
@@ -459,7 +459,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(exc, NoVoiceChannel):
             await ctx.send("No suitable voice channel was provided.")
 
-    @commands.command(name="pause")
+    @commands.command(name="pause",help="To pause the song.")
     async def pause_command(self,ctx):
         player = self.get_player(ctx)
         if player.is_paused:
@@ -472,14 +472,14 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if isinstance(exc, PlayerIsAlreadyPaused):
             await ctx.send("Playback is already paused.")
 
-    @commands.command(name="stop")
+    @commands.command(name="stop",help="To stop all the songs, and clear teh queue.")
     async def stop_command(self,ctx):
         player = self.get_player(ctx)
         player.queue.empty()
         await player.stop()
         await ctx.send("Playback stopped.")
 
-    @commands.command(name="next", aliases=["skip"])
+    @commands.command(name="next", aliases=["skip","s"],help="To move to the next song in the queue. \nAliases: skip, s.")
     async def next_command(self, ctx):
         player = self.get_player(ctx)
 
@@ -498,7 +498,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(exc, NoMoreTracks):
             await ctx.send("There are no more tracks in the queue.")
 
-    @commands.command(name="previous")
+    @commands.command(name="previous",aliases=["prev"],help="To move to the previous song in the queue. \nAliases: prev")
     async def previous_command(self, ctx):
         player = self.get_player(ctx)
 
@@ -516,7 +516,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         elif isinstance(exc, NoPreviousTracks):
             await ctx.send("There are no previous tracks in the queue.")
 
-    @commands.command(name="shuffle")
+    @commands.command(name="shuffle",help="To shuffle the current queue.")
     async def shuffle_command(self, ctx):
         player = self.get_player(ctx)
         player.queue.shuffle()
@@ -527,7 +527,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if isinstance(exc, QueueIsEmpty):
             await ctx.send("The queue could not be shuffled as it is currently empty.")
 
-    @commands.command(name="repeat")
+    @commands.command(name="repeat",help="To repeat the songs. \nMODES available: none, 1, all.")
     async def repeat_command(self,ctx, mode: str):
         if mode not in ("none","1","all"):
             raise InvalidRepeatMode
@@ -537,7 +537,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         await ctx.send(f"The repeat mode had been set to {mode}.")
 
 
-    @commands.command(name="queue",aliases=["q"])
+    @commands.command(name="queue",aliases=["q"],help="To display the queue. \nAlias: q")
     async def queue_command(self,ctx, show: t.Optional[int] = 10):
         player = self.get_player(ctx)
 
